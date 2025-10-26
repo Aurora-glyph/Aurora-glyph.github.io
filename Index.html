@@ -3,40 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Resume</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Uttkarsh Singh - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2d3436;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f3f5 100%);
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInDown 1s ease-out;
+            border: 1px solid #e9ecef;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #87a96b, #a8c69f, #bfd8bd);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 8px;
+            color: #2d3436;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1.15em;
+            color: #636e72;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #2d3436;
+            border: 1px solid #e9ecef;
+            font-weight: 500;
+        }
+
+        .contact-item:hover {
+            background: #87a96b;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(135, 169, 107, 0.3);
+            border-color: #87a96b;
+        }
+
+        .section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9ecef;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+
+        h2 {
+            color: #2d3436;
+            font-size: 1.9em;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 700;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #87a96b, #a8c69f);
+            border-radius: 2px;
+        }
+
+        .experience-item, .project-item {
+            margin-bottom: 28px;
+            padding: 24px;
+            background: #f8f9fa;
+            border-left: 3px solid #87a96b;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover, .project-item:hover {
+            background: #f1f3f5;
+            transform: translateX(8px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .position {
+            font-size: 1.25em;
+            color: #2d3436;
+            font-weight: 700;
+        }
+
+        .company {
+            font-size: 1.05em;
+            color: #636e72;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .date {
+            color: #87a96b;
+            font-size: 0.95em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .description {
+            margin-top: 12px;
+            color: #2d3436;
+        }
+
+        .description li {
+            margin-left: 20px;
+            margin-bottom: 8px;
+            color: #636e72;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-category h3 {
+            color: #2d3436;
+            margin-bottom: 14px;
+            font-size: 1.15em;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #f1f3f5;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: #2d3436;
+            font-weight: 500;
+        }
+
+        .skill-tag:hover {
+            background: #87a96b;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(135, 169, 107, 0.25);
+            border-color: #87a96b;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 12px 26px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-btn:hover {
+            background: #87a96b;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(135, 169, 107, 0.3);
+            border-color: #87a96b;
+        }
+
+        .highlight {
+            color: #87a96b;
+            font-weight: 600;
+        }
+
+        .about-text {
+            color: #2d3436;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #87a96b;
+            transition: all 0.3s ease;
+        }
+
+        .achievement:hover {
+            background: #f1f3f5;
+            transform: translateX(5px);
+        }
+
+        .achievement-icon {
+            font-size: 1.4em;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="left">
-            <h1>Your Name</h1>
-            <p>Computer Science Student</p>
+        <header>
+            <h1>UTTKARSH SINGH</h1>
+            <p class="tagline">Computer Science Engineering • BITS Pilani, Goa Campus</p>
+            <div class="contact-info">
+                <a href="mailto:work.aur0r4@gmail.com" class="contact-item">
+                    <span>✉️</span> work.aur0r4@gmail.com
+                </a>
+                <span class="contact-item">
+                    <span>📍</span> Goa, India
+                </span>
+            </div>
+        </header>
+
+        <div class="section">
+            <h2>Professional Summary</h2>
+            <p class="about-text">Computer Science student at BITS Pilani, Goa Campus with extensive experience in software development, cybersecurity, and emerging technologies. Demonstrated expertise in competitive cybersecurity competitions, full-stack development, and academic leadership. Proficient in multiple programming languages with a strong foundation in AI/ML, quantum computing, and neural networks.</p>
             
-            <h2>Contact</h2>
-            <p>Email: your.email@example.com</p>
-            <p>GitHub: github.com/yourusername</p>
-            
-            <h2>Skills</h2>
-            <ul>
-                <li>Java, Python, C</li>
-                <li>Git, Linux</li>
-                <li>CTF, Cybersecurity</li>
-            </ul>
+            <div class="achievement">
+                <span class="achievement-icon">🏆</span>
+                <span><strong>World #1 Rank</strong> - BITSKrieg Cybersecurity Team</span>
+            </div>
+            <div class="achievement">
+                <span class="achievement-icon">💻</span>
+                <span><strong>Apple Developer</strong> - Contributing to macOS 26 open source development</span>
+            </div>
+            <div class="achievement">
+                <span class="achievement-icon">🎓</span>
+                <span><strong>Academic Mentor</strong> - Guiding freshmen through their academic journey</span>
+            </div>
         </div>
-        
-        <div class="right">
+
+        <div class="section">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="position">Core Team Member</div>
+                        <div class="company">BITSKrieg Cybersecurity Team</div>
+                    </div>
+                    <div class="date">SEP 2024 - PRESENT</div>
+                </div>
+                <ul class="description">
+                    <li>Achieved World #1 ranking in international cybersecurity competitions</li>
+                    <li>Secured 2nd place in CTE TeckWeekendCTF and 15th place in InductionCTF 2024</li>
+                    <li>Designed and developed cybersecurity challenges for InductionCTF 2025</li>
+                    <li>Delivered technical presentations to audiences of 100+ students</li>
+                    <li>Managed pre-induction events and facilitated knowledge transfer sessions</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="position">Peer Mentor</div>
+                        <div class="company">Peer Mentorship Program, BITS Pilani</div>
+                    </div>
+                    <div class="date">JUL 2025 - PRESENT</div>
+                </div>
+                <ul class="description">
+                    <li>Mentored first-year students in academic planning and course selection</li>
+                    <li>Provided guidance on navigating campus resources and extracurricular opportunities</li>
+                    <li>Facilitated smooth transition to college life through structured support sessions</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="position">Senior Associate</div>
+                        <div class="company">Centre for Entrepreneurial Leadership</div>
+                    </div>
+                    <div class="date">JUN 2025 - PRESENT</div>
+                </div>
+                <ul class="description">
+                    <li>Developed and designed website for Coalescence, the flagship entrepreneurship event</li>
+                    <li>Led web development initiatives to enhance online presence and user engagement</li>
+                    <li>Coordinated Pre-Induction Event for CEL 2025, establishing brand identity among new students</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="position">Crew Member</div>
+                        <div class="company">Department of Photography, BITS Pilani</div>
+                    </div>
+                    <div class="date">SEP 2024 - AUG 2025</div>
+                </div>
+                <ul class="description">
+                    <li>Documented major campus events including Waves and Quark technical festivals</li>
+                    <li>Performed advanced photo editing and post-processing for institutional media</li>
+                    <li>Coordinated photoshoots and managed visual content for marketing materials</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="position">Special Invitee</div>
+                        <div class="company">Student Union - CSA & Grievance Redressal Committee</div>
+                    </div>
+                    <div class="date">2024 - PRESENT</div>
+                </div>
+                <ul class="description">
+                    <li>Contributing to student welfare initiatives and campus policy discussions</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Technical Projects</h2>
+            
+            <div class="project-item">
+                <div class="position">Autonomous TurtleBot3 Navigation System</div>
+                <p class="description">Developed autonomous navigation system for TurtleBot3 robotics platform as part of Project Kratos. Implemented SLAM algorithms, sensor fusion, and path planning capabilities for autonomous indoor navigation.</p>
+            </div>
+
+            <div class="project-item">
+                <div class="position">GoaRide - Campus Ride Sharing Platform</div>
+                <p class="description">Built Java-based ride-sharing application for campus transportation. Implemented real-time matching algorithms, route optimization, and user authentication system to facilitate efficient carpooling.</p>
+            </div>
+
+            <div class="project-item">
+                <div class="position">Security Research Tool</div>
+                <p class="description">Developed Python-based security research tool for keystroke logging and screen capture analysis. Created secure data transmission protocols for educational cybersecurity research purposes.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Rust</span>
+                        <span class="skill-tag">Q#</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Web Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Three.js</span>
+                        <span class="skill-tag">TailwindCSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">SQLite</span>
+                        <span class="skill-tag">Prisma ORM</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cybersecurity</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Reverse Engineering</span>
+                        <span class="skill-tag">Cryptography</span>
+                        <span class="skill-tag">Digital Forensics</span>
+                        <span class="skill-tag">Burp Suite</span>
+                        <span class="skill-tag">Wireshark</span>
+                        <span class="skill-tag">Penetration Testing</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>AI/ML & Research</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Neural Networks</span>
+                        <span class="skill-tag">Qiskit</span>
+                        <span class="skill-tag">Quantum Computing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
             <h2>Education</h2>
-            <p>BITS Pilani, Goa Campus</p>
-            
-            <h2>Experience</h2>
-            <p>Your projects and experiences here</p>
-            
-            <h2>Projects</h2>
-            <ul>
-                <li>Project 1 description</li>
-                <li>Project 2 description</li>
-            </ul>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="position">Bachelor of Engineering (Honours) in Computer Science</div>
+                        <div class="company">Birla Institute of Technology and Science, Pilani - Goa Campus</div>
+                    </div>
+                    <div class="date">2024 - 2028</div>
+                </div>
+                <p class="description" style="margin-top: 10px;">Relevant Coursework: Data Structures & Algorithms, Object-Oriented Programming, Computer Networks, Database Systems, Artificial Intelligence</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Connect</h2>
+            <div class="social-links">
+                <a href="mailto:uttuahan@gmail.com" class="social-btn">Email</a>
+                <a href="https://www.linkedin.com/in/singh-uttkarsh" target="_blank" class="social-btn">LinkedIn</a>
+                <a href="https://github.com/Aurora-glyph" target="_blank" class="social-btn">GitHub</a>
+                <a href="https://x.com/evnidklol" target="_blank" class="social-btn">Twitter</a>
+            </div>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const header = document.querySelector('header');
+                    if (header) {
+                        header.style.transform = `translateY(${scrolled * 0.2}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'fadeInUp 0.5s ease-out';
+                }, 10);
+            });
+        });
+    </script>
 </body>
 </html>
